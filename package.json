@@ -1,6 +1,6 @@
 {
   "name": "react-component-resizable",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "React component to react on resize event using scroll trick",
   "main": "index.js",
   "scripts": {
