@@ -2,7 +2,8 @@
  * @jsx React.DOM
  */
 
-var React = require('react');
+var React        = require('react');
+var objectAssign = require('object-assign');
 
 var Resizeable = React.createClass({
   propTypes: {
@@ -31,6 +32,7 @@ var Resizeable = React.createClass({
 
   componentDidMount: function () {
     this.resetTriggers();
+    setTimeout(this.resetTriggers.bind(this), 1000);
   },
   componentDidUpdate: function () {
     this.resetTriggers();
@@ -74,18 +76,18 @@ var Resizeable = React.createClass({
   },
 
   render: function() {
-
-    return this.transferPropsTo(
-      React.DOM.div({onScroll: this.onScroll, ref: 'resizable'},
+    var props = objectAssign({}, this.props, {onScroll: this.onScroll, ref: 'resizable'});
+    return (
+      React.createElement('div', props,
         [
           this.props.children,
-          React.DOM.div({className: this.props.triggersClass},
+          React.createElement('div', {className: this.props.triggersClass, key: 'trigger'},
             [
-              React.DOM.div({className: this.props.expandClass, ref: 'expand'}, React.DOM.div({ref: 'expandChild'})),
-              React.DOM.div({className: this.props.contractClass, ref: 'contract'})
+              React.createElement('div', {className: this.props.expandClass, ref: 'expand', key: 'expand'}, React.createElement('div', {ref: 'expandChild'})),
+              React.createElement('div', {className: this.props.contractClass, ref: 'contract', key: 'contract'})
             ]
           ),
-          this.props.embedCss ? React.DOM.style({}, '.resize-triggers { visibility: hidden; } .resize-triggers, .resize-triggers > div, .contract-trigger:before { content: \" \"; display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; } .resize-triggers > div { background: #eee; overflow: auto; } .contract-trigger:before { width: 200%; height: 200%; }') : null
+          this.props.embedCss ? React.createElement('style', {key: 'embededCss', dangerouslySetInnerHTML: {__html: '.resize-triggers { visibility: hidden; } .resize-triggers, .resize-triggers > div, .contract-trigger:before { content: \" \"; display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; } .resize-triggers > div { background: #eee; overflow: auto; } .contract-trigger:before { width: 200%; height: 200%; }'}}) : null
         ]
       )
     );
