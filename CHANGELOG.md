@@ -1,3 +1,8 @@
+## 0.2.1
+
+#### Fixes
+
+* Remove useless .bind()
 
 ## 0.2.0
 
