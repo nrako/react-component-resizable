@@ -41,7 +41,7 @@ var Resizeable = React.createClass({
   resetTriggers: function () {
     var contract = this.refs.contract.getDOMNode();
     var expandChild = this.refs.expandChild.getDOMNode();
-    var expand = this.refs.expandChild.getDOMNode();
+    var expand = this.refs.expand.getDOMNode();
 
     contract.scrollLeft      = contract.scrollWidth;
     contract.scrollTop       = contract.scrollHeight;
