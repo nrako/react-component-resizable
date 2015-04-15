@@ -51,28 +51,29 @@ var Resizeable = React.createClass({
     expand.scrollTop         = expand.scrollHeight;
   },
 
-  checkTriggers: function () {
-    var element = this.refs.resizable.getDOMNode();
-    return element.offsetWidth != this.lastWidth || element.offsetHeight != this.lastHeight;
-  },
-
   onScroll: function () {
     if (this.r) this.cancelFrame(this.r);
     this.r = this.requestFrame(function () {
-      if (!this.checkTriggers())
-        return;
+      var dimensions = this.getDimensions();
 
-      var el = this.refs.resizable.getDOMNode();
-
-      this.lastWidth = el.offsetWidth;
-      this.lastHeight = el.offsetHeight;
-
-      this.props.onResize({
-        width: this.lastWidth,
-        height: this.lastHeight
-      });
-
+      if (this.haveDimensionsChanged(dimensions)) {
+        this.lastDimensions = dimensions;
+        this.props.onResize(dimensions);
+      }
     }.bind(this));
+  },
+
+  getDimensions: function () {
+    var el = this.refs.resizable.getDOMNode();
+
+    return {
+      width: el.offsetWidth,
+      height: el.offsetHeight
+    };
+  },
+
+  haveDimensionsChanged: function (dimensions) {
+    return dimensions.width != this.lastDimensions.width || dimensions.height != this.lastDimensions.height;
   },
 
   render: function() {
