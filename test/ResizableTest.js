@@ -1,11 +1,11 @@
 var React = require('react/addons');
-var Resizeable = require('../src/component');
+var Resizable = require('../src/component');
 var ReactTestUtils = require('react/lib/ReactTestUtils');
 
-describe('Resizeable', function () {
+describe('Resizable', function () {
 
   it('should mount', function () {
-    var root = ReactTestUtils.renderIntoDocument(React.createElement(Resizeable, {
+    var root = ReactTestUtils.renderIntoDocument(React.createElement(Resizable, {
       onResize: function () {}
     }));
 
@@ -16,7 +16,7 @@ describe('Resizeable', function () {
     var clock = sinon.useFakeTimers();
     var container = document.createElement('div');
 
-    React.render(React.createElement(Resizeable, {
+    React.render(React.createElement(Resizable, {
       onResize: function () {}
     }), container);
 
@@ -25,4 +25,5 @@ describe('Resizeable', function () {
     clock.tick(1000);
     clock.restore();
   });
+
 });
