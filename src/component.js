@@ -32,8 +32,13 @@ var Resizeable = React.createClass({
 
   componentDidMount: function () {
     this.resetTriggers();
-    setTimeout(this.resetTriggers, 1000);
+    this.initialResetTriggersTimeout = setTimeout(this.resetTriggers, 1000);
   },
+
+  componentWillUnmount: function () {
+    clearTimeout(this.initialResetTriggersTimeout);
+  },
+
   componentDidUpdate: function () {
     this.resetTriggers();
   },
