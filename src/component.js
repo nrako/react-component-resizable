@@ -6,6 +6,12 @@ var React        = require('react');
 var objectAssign = require('object-assign');
 
 var Resizeable = React.createClass({
+
+  lastDimensions: {
+    width: null,
+    height: null
+  },
+
   propTypes: {
     triggersClass: React.PropTypes.string,
     expandClass: React.PropTypes.string,
@@ -13,6 +19,7 @@ var Resizeable = React.createClass({
     embedCss: React.PropTypes.bool,
     onResize: React.PropTypes.func.isRequired
   },
+
   getDefaultProps: function () {
     return {
       triggersClass: 'resize-triggers',

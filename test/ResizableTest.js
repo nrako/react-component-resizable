@@ -26,4 +26,14 @@ describe('Resizable', function () {
     clock.restore();
   });
 
+  it('should have default value for last dimensions when first rendered', function (done) {
+    var node = ReactTestUtils.renderIntoDocument(React.createElement(Resizable, {
+      onResize: function () {
+        done();
+      }
+    }));
+    
+    ReactTestUtils.Simulate.scroll(node.refs.resizable);
+  });
+
 });
