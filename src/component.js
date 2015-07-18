@@ -2,10 +2,10 @@
  * @jsx React.DOM
  */
 
-var React        = require('react');
+var React = global.React || require('react');
 var objectAssign = require('object-assign');
 
-var Resizeable = React.createClass({
+var Resizable = React.createClass({
 
   lastDimensions: {
     width: null,
@@ -77,7 +77,6 @@ var Resizeable = React.createClass({
 
   getDimensions: function () {
     var el = this.refs.resizable.getDOMNode();
-
     return {
       width: el.offsetWidth,
       height: el.offsetHeight
@@ -108,4 +107,5 @@ var Resizeable = React.createClass({
 
 });
 
-module.exports = Resizeable;
+module.exports = Resizable;
+global.Resizable = Resizable;
