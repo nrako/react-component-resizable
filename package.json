@@ -4,7 +4,8 @@
   "description": "React component to react on resize event using scroll trick",
   "main": "index.js",
   "scripts": {
-    "test": "karma start --single-run"
+    "test": "karma start --single-run",
+    "build": "./node_modules/.bin/browserify ./src/component.js > ./dist/react-component-resizable.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "object-assign": "^1.0.0"
   },
   "devDependencies": {
+    "browserify": "^10.2.6",
     "chai": "^2.2.0",
     "karma": "^0.12.31",
     "karma-browserify": "^4.1.2",
