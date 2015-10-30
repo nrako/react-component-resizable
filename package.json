@@ -34,10 +34,12 @@
     "karma-mocha": "^0.1.10",
     "karma-sinon": "^1.0.4",
     "mocha": "^2.2.4",
-    "react": "^0.12.0",
+    "react": "^0.14.0",
+    "react-addons-test-utils": "^0.14.1",
+    "react-dom": "^0.14.1",
     "sinon": "^1.14.1"
   },
   "peerDependencies": {
-    "react": ">=0.12.0"
+    "react": "^0.14.0"
   }
 }

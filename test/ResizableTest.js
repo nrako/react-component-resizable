@@ -1,6 +1,7 @@
-var React = require('react/addons');
+var React = require('react');
+var ReactDOM = require('react-dom');
 var Resizable = require('../src/component');
-var ReactTestUtils = require('react/lib/ReactTestUtils');
+var ReactTestUtils = require('react-addons-test-utils');
 
 describe('Resizable', function () {
 
@@ -16,11 +17,11 @@ describe('Resizable', function () {
     var clock = sinon.useFakeTimers();
     var container = document.createElement('div');
 
-    React.render(React.createElement(Resizable, {
+    ReactDOM.render(React.createElement(Resizable, {
       onResize: function () {}
     }), container);
 
-    React.unmountComponentAtNode(container);
+    ReactDOM.unmountComponentAtNode(container);
 
     clock.tick(1000);
     clock.restore();
