@@ -14,10 +14,10 @@ var Resizable = React.createClass({
 
   propTypes: {
     triggersClass: React.PropTypes.string,
-    expandClass: React.PropTypes.string,
+    expandClass  : React.PropTypes.string,
     contractClass: React.PropTypes.string,
-    embedCss: React.PropTypes.bool,
-    onResize: React.PropTypes.func.isRequired
+    embedCss     : React.PropTypes.bool,
+    onResize     : React.PropTypes.func.isRequired
   },
 
   getDefaultProps: function () {
@@ -51,9 +51,9 @@ var Resizable = React.createClass({
   },
 
   resetTriggers: function () {
-    var contract = this.refs.contract.getDOMNode();
-    var expandChild = this.refs.expandChild.getDOMNode();
-    var expand = this.refs.expand.getDOMNode();
+    var contract = this.refs.contract;
+    var expandChild = this.refs.expandChild;
+    var expand = this.refs.expand;
 
     contract.scrollLeft      = contract.scrollWidth;
     contract.scrollTop       = contract.scrollHeight;
@@ -76,7 +76,7 @@ var Resizable = React.createClass({
   },
 
   getDimensions: function () {
-    var el = this.refs.resizable.getDOMNode();
+    var el = this.refs.resizable;
     return {
       width: el.offsetWidth,
       height: el.offsetHeight
