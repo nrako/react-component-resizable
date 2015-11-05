@@ -14,10 +14,10 @@ var WindowResizable = React.createClass({
   },
 
   onResize: function(resizeAttributes){
-    var width = resizeAttributes.width, 
+    var width = resizeAttributes.width,
     height = resizeAttributes.height;
 
-    this.setState({width: width, height: height})
+    this.setState({width: width, height: height});
   }
 
 });
