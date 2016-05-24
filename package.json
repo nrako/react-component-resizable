@@ -1,6 +1,6 @@
 {
   "name": "react-component-resizable",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "React component to react on resize event using scroll trick",
   "main": "index.js",
   "scripts": {
@@ -34,12 +34,12 @@
     "karma-mocha": "^0.1.10",
     "karma-sinon": "^1.0.4",
     "mocha": "^2.2.4",
-    "react": "^0.14.0",
-    "react-addons-test-utils": "^0.14.1",
-    "react-dom": "^0.14.1",
+    "react": "^15.0.0",
+    "react-addons-test-utils": "^15.0.0",
+    "react-dom": "^15.0.0",
     "sinon": "^1.14.1"
   },
   "peerDependencies": {
-    "react": "^0.14.0"
+    "react": "^0.14.0 || ^15.0.0"
   }
 }
