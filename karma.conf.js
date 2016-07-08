@@ -12,7 +12,11 @@ module.exports = function (config) {
     ],
 
     browserify: {
-      debug: true
+      configure: function browserify(bundle) {
+        bundle.once('prebundle', function prebundle() {
+          bundle.transform('babelify', {presets: ['es2015', 'stage-2']});
+        });
+      }
     },
 
     preprocessors: {
