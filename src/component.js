@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = global.React || require('react');
 var objectAssign = require('object-assign');
 
