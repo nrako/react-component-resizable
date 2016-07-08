@@ -23,5 +23,5 @@ var WindowResizable = React.createClass({
 });
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    React.render(React.createElement(WindowResizable), document.body);
+    ReactDOM.render(React.createElement(WindowResizable), document.getElementById('example'));
 });
