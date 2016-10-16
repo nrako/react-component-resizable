@@ -1,3 +1,7 @@
-node_modules
-npm-debug.log
-.idea
+/coverage
+/demo/dist
+/es
+/lib
+/node_modules
+/umd
+npm-debug.log*
