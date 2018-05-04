@@ -54,9 +54,37 @@ jobs:
 
       - run: greenkeeper-lockfile-upload
 
+  gh_pages:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: .
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - run: npm run build:demo
+
+      - run:
+          name: Deploy on gh-pages branch
+          command: |
+            git config --global user.email "bot@circleci"
+            git config --global user.name "CircleCI"
+            git clone git@github.com:$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git -b gh-pages public
+            cp -a demo/dist/. public/.
+            cd public
+            git add -A
+            git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1} [ci skip]" --allow-empty
+            git push origin gh-pages
+
 workflows:
   version: 2
-  build_and_test:
+  build_test_and_gh_pages:
     jobs:
       - build:
           filters:
@@ -65,3 +93,9 @@ workflows:
       - test:
           requires:
             - build
+      - gh_pages:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master

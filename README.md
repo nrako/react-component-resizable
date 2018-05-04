@@ -5,6 +5,8 @@ React Resizable Component
 
 A React component to implement cross-browser event based resize detection, without interval polling!.
 
+[DEMO](http://nrako.github.io/react-component-resizable/)
+
 ### Usage
 ```
 var Resizable = require('react-component-resizable');

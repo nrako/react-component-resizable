@@ -16,6 +16,7 @@
   ],
   "scripts": {
     "build": "nwb build-react-component",
+    "build:demo": "nwb build-demo",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
     "test": "nwb test",
