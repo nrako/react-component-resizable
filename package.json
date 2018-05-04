@@ -5,6 +5,9 @@
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
   "module": "es/index.js",
+  "engines": {
+    "node": ">=6.11.5"
+  },
   "files": [
     "css",
     "es",
@@ -24,12 +27,12 @@
     "react": "15.x"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "nwb": "0.12.x",
+    "chai": "^4.1.2",
+    "nwb": "^0.22.0",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
     "react-dom": "^15.3.2",
-    "sinon": "^2.0.0-pre.3"
+    "sinon": "^5.0.3"
   },
   "author": "@nrako",
   "homepage": "https://github.com/nrako/react-component-resizable",
