@@ -25,14 +25,14 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "react": "15.x"
+    "react": ">=16.x"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "nwb": "^0.22.0",
-    "react": "^15.3.2",
-    "react-addons-test-utils": "^15.3.2",
-    "react-dom": "^15.3.2",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "sinon": "^5.0.3"
   },
   "author": "@nrako",
