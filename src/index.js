@@ -1,51 +1,48 @@
-var React = require('react');
+import { PropTypes } from 'prop-types'
+import React, { PureComponent } from 'react'
 
-export default React.createClass({
+class ComponentResizableComponent extends PureComponent {
 
-  lastDimensions: {
+  lastDimensions = {
     width: null,
     height: null
-  },
+  }
 
-  propTypes: {
-    triggersClass: React.PropTypes.string,
-    expandClass  : React.PropTypes.string,
-    contractClass: React.PropTypes.string,
-    embedCss     : React.PropTypes.bool,
-    onResize     : React.PropTypes.func.isRequired
-  },
+  static propTypes = {
+    triggersClass: PropTypes.string,
+    expandClass  : PropTypes.string,
+    contractClass: PropTypes.string,
+    embedCss     : PropTypes.bool,
+    onResize     : PropTypes.func.isRequired
+  }
 
-  getDefaultProps: function () {
-    return {
+  static defaultProps = {
       triggersClass: 'resize-triggers',
       expandClass: 'expand-trigger',
       contractClass: 'contract-trigger',
       embedCss: true
-    }
-  },
+  }
 
-  requestFrame: function (fn) {
-    return (window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || function(fn){ return window.setTimeout(fn, 20) })(fn)
-  },
+  requestFrame = fn =>
+    (window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || function(fn){ return window.setTimeout(fn, 20) })(fn)
 
-  cancelFrame: function (id) {
-    return (window.cancelAnimationFrame || window.mozCancelAnimationFrame || window.webkitCancelAnimationFrame || window.clearTimeout)(id)
-  },
+  cancelFrame = id =>
+    (window.cancelAnimationFrame || window.mozCancelAnimationFrame || window.webkitCancelAnimationFrame || window.clearTimeout)(id)
 
-  componentDidMount: function () {
+  componentDidMount() {
     this.resetTriggers()
     this.initialResetTriggersTimeout = setTimeout(this.resetTriggers, 1000)
-  },
+  }
 
-  componentWillUnmount: function () {
+  componentWillUnmount () {
     clearTimeout(this.initialResetTriggersTimeout)
-  },
+  }
 
-  componentDidUpdate: function () {
+  componentDidUpdate () {
     this.resetTriggers()
-  },
+  }
 
-  resetTriggers: function () {
+  resetTriggers = () => {
     var contract = this.refs.contract
     var expandChild = this.refs.expandChild
     var expand = this.refs.expand
@@ -56,9 +53,9 @@ export default React.createClass({
     expandChild.style.height = expand.offsetHeight + 1 + 'px'
     expand.scrollLeft        = expand.scrollWidth
     expand.scrollTop         = expand.scrollHeight
-  },
+  }
 
-  onScroll: function () {
+  onScroll = () => {
     if (this.r) this.cancelFrame(this.r)
     this.r = this.requestFrame(function () {
       var dimensions = this.getDimensions()
@@ -68,21 +65,21 @@ export default React.createClass({
         this.props.onResize(dimensions)
       }
     }.bind(this))
-  },
+  }
 
-  getDimensions: function () {
+  getDimensions = () => {
     var el = this.refs.resizable
     return {
       width: el.offsetWidth,
       height: el.offsetHeight,
     }
-  },
+  }
 
-  haveDimensionsChanged: function (dimensions) {
-    return dimensions.width != this.lastDimensions.width || dimensions.height != this.lastDimensions.height
-  },
+  haveDimensionsChanged = dimensions =>
+    dimensions.width != this.lastDimensions.width || dimensions.height != this.lastDimensions.height
 
-  render: function() {
+
+  render() {
     const {triggersClass, expandClass, contractClass, embedCss, onResize, ...rest} = this.props
     var props = { ...rest, onScroll: this.onScroll, ref: 'resizable' }
     return (
@@ -103,4 +100,6 @@ export default React.createClass({
       ])
     )
   }
-})
+}
+
+export default ComponentResizableComponent
