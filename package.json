@@ -1,49 +1,52 @@
 {
   "name": "react-component-resizable",
-  "version": "1.0.1",
+  "version": "1.1.0-rc1",
   "description": "React component to react on resize event using scroll trick",
-  "main": "index.js",
-  "scripts": {
-    "test": "karma start --single-run",
-    "build": "browserify ./src/component.js -o ./dist/react-component-resizable.js -t [ babelify --presets [ es2015 stage-2 ] ] -x react"
+  "main": "lib/index.js",
+  "jsnext:main": "es/index.js",
+  "module": "es/index.js",
+  "engines": {
+    "node": ">=6.11.5"
   },
+  "files": [
+    "css",
+    "es",
+    "lib",
+    "umd"
+  ],
+  "scripts": {
+    "build": "nwb build-react-component",
+    "build:demo": "nwb build-demo",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "nwb serve-react-demo",
+    "test": "nwb test",
+    "test:coverage": "nwb test --coverage",
+    "test:watch": "nwb test --server"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "15.x"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "nwb": "^0.22.0",
+    "react": "^15.3.2",
+    "react-addons-test-utils": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "sinon": "^5.0.3"
+  },
+  "author": "@nrako",
+  "homepage": "https://github.com/nrako/react-component-resizable",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/nrako/react-component-resizable.git"
   },
   "keywords": [
+    "react-component",
     "react",
     "component",
     "resize",
-    "onresize",
-    "react-component"
-  ],
-  "author": "@nrako",
-  "license": "MIT",
-  "dependencies": {
-    "object-assign": "^1.0.0"
-  },
-  "devDependencies": {
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-stage-2": "^6.11.0",
-    "babelify": "^7.3.0",
-    "browserify": "^13.0.1",
-    "chai": "^3.5.0",
-    "karma": "^1.1.1",
-    "karma-browserify": "^5.0.5",
-    "karma-chai": "^0.1.0",
-    "karma-chrome-launcher": "^1.0.1",
-    "karma-cli": "1.0.1",
-    "karma-mocha": "^1.1.1",
-    "karma-sinon": "^1.0.4",
-    "mocha": "^2.2.4",
-    "react": "^15.0.0",
-    "react-addons-test-utils": "^15.0.0",
-    "react-dom": "^15.0.0",
-    "sinon": "^1.14.1",
-    "watchify": "^3.7.0"
-  },
-  "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0"
-  }
+    "onresize"
+  ]
 }

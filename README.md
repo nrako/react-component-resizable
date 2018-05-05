@@ -1,7 +1,11 @@
 React Resizable Component
 =========================
 
+[![CircleCI](https://circleci.com/gh/nrako/react-component-resizable.svg?style=svg)](https://circleci.com/gh/nrako/react-component-resizable)
+
 A React component to implement cross-browser event based resize detection, without interval polling!.
+
+[DEMO](http://nrako.github.io/react-component-resizable/)
 
 ### Usage
 ```
@@ -64,3 +68,4 @@ Many thanks to [Daniel - backalleycoder.com](http://www.backalleycoder.com/2013/
 ### Licence
 
 MIT
+

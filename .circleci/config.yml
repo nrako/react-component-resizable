@@ -1,0 +1,101 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:8.9.4-browsers
+
+version: 2
+jobs:
+  build:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run: npm run build
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - umd
+            - es
+            - lib
+
+  test:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: .
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - run: sudo npm install -g greenkeeper-lockfile@1
+      - run: greenkeeper-lockfile-update
+
+      # run tests!
+      - run: npm run test
+
+      - run: greenkeeper-lockfile-upload
+
+  gh_pages:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: .
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - run: npm run build:demo
+
+      - run:
+          name: Deploy on gh-pages branch
+          command: |
+            git config --global user.email "bot@circleci"
+            git config --global user.name "CircleCI"
+            git clone git@github.com:$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git -b gh-pages public
+            cp -a demo/dist/. public/.
+            cd public
+            git add -A
+            git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1} [ci skip]" --allow-empty
+            git push origin gh-pages
+
+workflows:
+  version: 2
+  build_test_and_gh_pages:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: gh-pages
+      - test:
+          requires:
+            - build
+      - gh_pages:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
