@@ -7,7 +7,7 @@ A React component to implement cross-browser event based resize detection, witho
 
 [DEMO](http://nrako.github.io/react-component-resizable/)
 
-### Usage
+## Usage
 ```
 var Resizable = require('react-component-resizable');
 ```
@@ -19,18 +19,25 @@ var Resizable = require('react-component-resizable');
 
 `npm install react-component-resizable --save`
 
-### Prop types
+## Prop types
 ```javascript
-propTypes: {
-  triggersClass: React.PropTypes.string,      // default resize-triggers
-  expandClass: React.PropTypes.string,        // default expand-trigger
-  contractClass: React.PropTypes.string,      // default contract-trigger
-  embedCss: React.PropTypes.bool,             // embed required style, default true
-  onResize: React.PropTypes.func.isRequired   // required callback function
+static propTypes = {
+  triggersClass: PropTypes.string,
+  expandClass  : PropTypes.string,
+  contractClass: PropTypes.string,
+  embedCss     : PropTypes.bool,
+  onResize     : PropTypes.func.isRequired
+}
+
+static defaultProps = {
+  triggersClass: 'resize-triggers',
+  expandClass: 'expand-trigger',
+  contractClass: 'contract-trigger',
+  embedCss: true
 }
 ```
 
-#### Default style
+### Default style
 
 The component will automatically embed some required style. This can be turned off using the `embedCss={false}` prop.
 
@@ -61,11 +68,11 @@ The component will automatically embed some required style. This can be turned o
 
 ```
 
-### Credits
+## Credits
 
 Many thanks to [Daniel - backalleycoder.com](http://www.backalleycoder.com/2013/03/18/cross-browser-event-based-element-resize-detection/) for this blog post and [scecima and his project javascript-detect-element-resize](https://github.com/sdecima/javascript-detect-element-resize)!
 
-### Licence
+## Licence
 
 MIT
 
