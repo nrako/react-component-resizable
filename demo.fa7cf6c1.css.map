@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./demo/src/style.css"],"names":[],"mappings":"AAAA,gBAAgB,WAAW,YAAY,SAAS,YAAY,WAAW,sBAAsB,WAAW,U","file":"demo.fa7cf6c1.css","sourcesContent":["#demo,body,html{width:100%;height:100%}.yourApp{height:100%}.resizable{border:1px solid gray;height:50%;width:80%}"],"sourceRoot":""}
