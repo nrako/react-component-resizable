@@ -36,6 +36,12 @@ class ComponentResizableComponent extends PureComponent {
 
   componentWillUnmount () {
     clearTimeout(this.initialResetTriggersTimeout)
+
+    // Cancel pending animation frame rqeuest if one exists when we're
+    // unmounting. If we don't, then the frame callback may be called after
+    // `this.refs.resizable` has been removed from the dom, causing an error.
+    // @see https://github.com/nrako/react-component-resizable/issues/17
+    if (this.r) this.cancelFrame(this.r);
   }
 
   componentDidUpdate () {
